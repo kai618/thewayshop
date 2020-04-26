@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-cat",
+      "appliesTo": "theway/images/cat/",
+      "type": "launch"
+    }
+  ]
+}
