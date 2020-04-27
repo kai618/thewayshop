@@ -39,9 +39,10 @@ namespace thewayshop.Models
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public virtual LoaiSanPham LoaiSanPham { get; set; }
 
+        public static DateTime threshold = DateTime.Today.AddMonths(-1);
         public ShowcaseType LayLoaiTrungBay()
         {
-            if (NgayThemSP > DateTime.Today.AddMonths(-2)) return ShowcaseType.New;
+            if (NgayThemSP > threshold && KhuyenMai == 0) return ShowcaseType.New;
             else if (KhuyenMai > 0) return ShowcaseType.Sale;
             return ShowcaseType.Normal;
         }

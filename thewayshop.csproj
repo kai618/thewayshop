@@ -271,10 +271,6 @@
     <Content Include="theway\images\payment-icon\3.png" />
     <Content Include="theway\images\payment-icon\5.png" />
     <Content Include="theway\images\payment-icon\7.png" />
-    <Content Include="theway\images\product\img-pro-05.jpg" />
-    <Content Include="theway\images\product\img-pro-06.jpg" />
-    <Content Include="theway\images\product\img-pro-07.jpg" />
-    <Content Include="theway\images\product\img-pro-08.jpg" />
     <Content Include="theway\images\smp-img-01.jpg" />
     <Content Include="theway\images\smp-img-02.jpg" />
     <Content Include="theway\images\smp-img-03.jpg" />
@@ -334,6 +330,14 @@
     <Content Include="theway\images\product\t-shirt-02.webp" />
     <Content Include="theway\images\product\t-shirt-03.webp" />
     <Content Include="theway\images\product\t-shirt-04.webp" />
+    <Content Include="theway\images\product\jeans-01.webp" />
+    <Content Include="theway\images\product\jeans-02.webp" />
+    <Content Include="theway\images\product\jeans-03.webp" />
+    <Content Include="theway\images\product\t-shirt-05.webp" />
+    <Content Include="theway\images\product\t-shirt-06.webp" />
+    <Content Include="Views\Shared\_SideCart.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_MainTopNav.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

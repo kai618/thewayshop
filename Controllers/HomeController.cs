@@ -20,18 +20,26 @@ namespace thewayshop.Controllers
 
         private List<SanPham> GetShowcaseProducts()
         {
-            var threshold = DateTime.Today.AddMonths(-2);
-            var newProducts = _ctx.SanPhams.Where(sp => sp.NgayThemSP > threshold && sp.KhuyenMai == 0).Take(4).ToList();
-
-            var saleProducts = _ctx.SanPhams.Where(sp => sp.KhuyenMai > 0).Take(4).ToList();
-
-            newProducts.AddRange(saleProducts);
-
             var ran = new Random();
-            var randomisedProducts = new List<SanPham>();
-            var length = newProducts.Count;
 
-            for (var i = 0; i < length; i++)
+            var newProducts = _ctx.SanPhams
+                .Where(sp => sp.NgayThemSP > SanPham.threshold && sp.KhuyenMai == 0)
+                .OrderByDescending(sp => sp.NgayThemSP)
+                .Take(4).ToList();
+
+            // fetch all sale products
+            var saleProducts = _ctx.SanPhams.Where(sp => sp.KhuyenMai > 0).ToList();
+            // add 4 random sale products to newProducts
+            for (var i = 0; i < 4; i++)
+            {
+                var product = saleProducts[ran.Next(saleProducts.Count)];
+                newProducts.Add(product);
+                saleProducts.Remove(product);
+            }
+
+
+            var randomisedProducts = new List<SanPham>();
+            for (int i = 0, length = newProducts.Count; i < length; i++)
             {
                 var index = ran.Next(newProducts.Count);
                 randomisedProducts.Add(newProducts[index]);
@@ -41,6 +49,22 @@ namespace thewayshop.Controllers
             return randomisedProducts;
         }
     }
-
-
 }
+
+
+//public static DateTime threshold = DateTime.Today.AddMonths(-1);
+//public ShowcaseType LayLoaiTrungBay()
+//{
+//if (NgayThemSP > threshold) return ShowcaseType.New;
+//else if (KhuyenMai > 0) return ShowcaseType.Sale;
+//return ShowcaseType.Normal;
+//}
+//}
+//}
+
+//public enum ShowcaseType
+//{
+//New,
+//Sale,
+//Normal
+//}

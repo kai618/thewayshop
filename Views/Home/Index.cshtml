@@ -52,8 +52,8 @@
         <div class="special-menu text-center">
           <div class="button-group filter-button-group">
             <button class="active" data-filter="*">All</button>
-            <button data-filter=".top-featured">Top Featured</button>
-            <button data-filter=".best-seller">Best Seller</button>
+            <button data-filter=".top-featured">New</button>
+            <button data-filter=".best-seller">Sale Off</button>
           </div>
         </div>
       </div>
@@ -63,8 +63,6 @@
 
       @foreach (var p in products)
       {
-        var path = p.HinhAnh01 + ".webp";
-
         if (p.LayLoaiTrungBay() == ShowcaseType.New)
         {
           <div class="col-lg-3 col-md-6 special-grid top-featured">
@@ -73,8 +71,7 @@
                 <div class="type-lb">
                   <p class="new">New</p>
                 </div>
-
-                <img src="~/theway/images/product/@path" class="img-fluid" alt="Image">
+                <img src="@p.HinhAnh01" class="img-fluid" alt="Image">
                 <div class="mask-icon">
                   <ul>
                     <li>
@@ -111,7 +108,7 @@
                 <div class="type-lb">
                   <p class="sale">Sale</p>
                 </div>
-                <img src="~/theway/images/product/@path" class="img-fluid" alt="Image">
+                <img src="@p.HinhAnh01" class="img-fluid" alt="Image">
                 <div class="mask-icon">
                   <ul>
                     <li>
