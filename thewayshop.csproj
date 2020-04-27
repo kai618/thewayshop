@@ -244,10 +244,10 @@
     <Content Include="theway\images\img-1.jpg" />
     <Content Include="theway\images\img-2.jpg" />
     <Content Include="theway\images\img-3.jpg" />
-    <Content Include="theway\images\img-pro-01.jpg" />
-    <Content Include="theway\images\img-pro-02.jpg" />
-    <Content Include="theway\images\img-pro-03.jpg" />
-    <Content Include="theway\images\img-pro-04.jpg" />
+    <Content Include="theway\images\product\img-pro-01.jpg" />
+    <Content Include="theway\images\product\img-pro-02.jpg" />
+    <Content Include="theway\images\product\img-pro-03.jpg" />
+    <Content Include="theway\images\product\img-pro-04.jpg" />
     <Content Include="theway\images\ins-bg.jpg" />
     <Content Include="theway\images\instagram-img-01.jpg" />
     <Content Include="theway\images\instagram-img-02.jpg" />
@@ -264,6 +264,10 @@
     <Content Include="theway\images\payment-icon\3.png" />
     <Content Include="theway\images\payment-icon\5.png" />
     <Content Include="theway\images\payment-icon\7.png" />
+    <Content Include="theway\images\product\img-pro-05.jpg" />
+    <Content Include="theway\images\product\img-pro-06.jpg" />
+    <Content Include="theway\images\product\img-pro-07.jpg" />
+    <Content Include="theway\images\product\img-pro-08.jpg" />
     <Content Include="theway\images\smp-img-01.jpg" />
     <Content Include="theway\images\smp-img-02.jpg" />
     <Content Include="theway\images\smp-img-03.jpg" />
@@ -315,6 +319,14 @@
     <Content Include="theway\webfonts\fa-solid-900.woff2" />
     <Content Include="Views\Shared\_Slider.cshtml" />
     <Content Include="Views\Shared\_Blog.cshtml" />
+    <Content Include="theway\images\product\shirt-01.webp" />
+    <Content Include="theway\images\product\shirt-02.webp" />
+    <Content Include="theway\images\product\shirt-03.webp" />
+    <Content Include="theway\images\product\shirt-04.webp" />
+    <Content Include="theway\images\product\t-shirt-01.webp" />
+    <Content Include="theway\images\product\t-shirt-02.webp" />
+    <Content Include="theway\images\product\t-shirt-03.webp" />
+    <Content Include="theway\images\product\t-shirt-04.webp" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
