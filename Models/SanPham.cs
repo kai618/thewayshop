@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using thewayshop.Controllers;
+
 namespace thewayshop.Models
 {
     using System;
@@ -24,16 +26,21 @@ namespace thewayshop.Models
         public int MaLoaiSP { get; set; }
         public string TenSP { get; set; }
         public Nullable<decimal> GiaHienHanh { get; set; }
-        public Nullable<int> SoLuong { get; set; }
         public Nullable<int> KhuyenMai { get; set; }
+        public Nullable<decimal> GiaThuc { get; set; }
+        public Nullable<int> SoLuong { get; set; }
+        public Nullable<System.DateTime> NgayThemSP { get; set; }
         public string MoTa { get; set; }
         public string HinhAnh01 { get; set; }
         public string HinhAnh02 { get; set; }
         public string HinhAnh03 { get; set; }
-        public Nullable<System.DateTime> NgayThemSP { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public virtual LoaiSanPham LoaiSanPham { get; set; }
+
+        // for HomePage
+        public ShowCaseType LoaiTrungBay;
+
     }
 }
