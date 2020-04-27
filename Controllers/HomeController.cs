@@ -13,20 +13,17 @@ namespace thewayshop.Controllers
         public ActionResult Index()
         {
             ViewBag.types = _ctx.LoaiSanPhams.Take(6).ToList();
-            ViewBag.products = GetShowCaseProduct();
+            ViewBag.products = GetShowcaseProducts();
 
             return View();
         }
 
-        private List<SanPham> GetShowCaseProduct()
+        private List<SanPham> GetShowcaseProducts()
         {
             var threshold = DateTime.Today.AddMonths(-2);
-            var newProducts =
-                _ctx.SanPhams.Where(sp => sp.NgayThemSP > threshold && sp.KhuyenMai == 0).Take(4).ToList();
-            newProducts.ForEach(sp => sp.LoaiTrungBay = ShowCaseType.New);
+            var newProducts = _ctx.SanPhams.Where(sp => sp.NgayThemSP > threshold && sp.KhuyenMai == 0).Take(4).ToList();
 
             var saleProducts = _ctx.SanPhams.Where(sp => sp.KhuyenMai > 0).Take(4).ToList();
-            saleProducts.ForEach(sp => sp.LoaiTrungBay = ShowCaseType.Sale);
 
             newProducts.AddRange(saleProducts);
 
@@ -45,9 +42,5 @@ namespace thewayshop.Controllers
         }
     }
 
-    public enum ShowCaseType
-    {
-        New,
-        Sale
-    }
+
 }

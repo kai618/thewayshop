@@ -9,13 +9,6 @@ namespace thewayshop.Controllers
     {
         public static string StringCapitalise(string str)
         {
-            //if (str.Trim().IsEmpty()) return null;
-            //var words = str.Split(' ');
-            //foreach (var word in words)
-            //{
-            //}
-
-
             var cultureInfo = Thread.CurrentThread.CurrentCulture;
             var textInfo = cultureInfo.TextInfo;
 

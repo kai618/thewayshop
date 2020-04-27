@@ -65,7 +65,7 @@
       {
         var path = p.HinhAnh01 + ".webp";
 
-        if (p.LoaiTrungBay == ShowCaseType.New)
+        if (p.LayLoaiTrungBay() == ShowcaseType.New)
         {
           <div class="col-lg-3 col-md-6 special-grid top-featured">
             <div class="products-single fix">
@@ -103,7 +103,7 @@
             </div>
           </div>
         }
-        else if (p.LoaiTrungBay == ShowCaseType.Sale)
+        else if (p.LayLoaiTrungBay() == ShowcaseType.Sale)
         {
           <div class="col-lg-3 col-md-6 special-grid best-seller">
             <div class="products-single fix">
