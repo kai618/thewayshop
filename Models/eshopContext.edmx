@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="eshopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="eshopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChiTietHoaDon">
           <Key>
             <PropertyRef Name="MaHD" />
@@ -47,7 +47,7 @@
           <Key>
             <PropertyRef Name="MaLoaiSP" />
           </Key>
-          <Property Name="MaLoaiSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaLoaiSP" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="TenLoaiSP" Type="nvarchar" MaxLength="50" />
           <Property Name="HinhAnh01" Type="nvarchar" MaxLength="200" />
           <Property Name="MaNhom" Type="nvarchar" MaxLength="50" />
@@ -65,7 +65,7 @@
             <PropertyRef Name="MaSP" />
           </Key>
           <Property Name="MaSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaLoaiSP" Type="int" Nullable="false" />
+          <Property Name="MaLoaiSP" Type="nvarchar" MaxLength="20" />
           <Property Name="TenSP" Type="nvarchar" MaxLength="100" />
           <Property Name="SoLuong" Type="int" />
           <Property Name="GiaHienHanh" Type="decimal" Precision="18" Scale="2" />
@@ -136,7 +136,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SanPham_LoaiSanPham">
-          <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="1" />
+          <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="0..1" />
           <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoaiSanPham">
@@ -207,7 +207,8 @@
             <End Role="SanPham" EntitySet="SanPham" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="eshopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -258,24 +259,33 @@
           <Key>
             <PropertyRef Name="MaLoaiSP" />
           </Key>
-          <Property Name="MaLoaiSP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaLoaiSP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TenLoaiSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HinhAnh01" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="LoaiSanPham" ToRole="SanPham" />
           <Property Name="MaNhom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="NhomLoaiSanPham" Relationship="eshopModel.FK_LoaiSanPham_NhomLoaiSanPham" FromRole="LoaiSanPham" ToRole="NhomLoaiSanPham" />
+          <NavigationProperty Name="NhomLoaiSanPham" Relationship="Self.FK_LoaiSanPham_NhomLoaiSanPham" FromRole="LoaiSanPham" ToRole="NhomLoaiSanPham" />
+          <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="LoaiSanPham" ToRole="SanPham" />
+        </EntityType>
+        <EntityType Name="NhomLoaiSanPham">
+          <Key>
+            <PropertyRef Name="MaNhom" />
+          </Key>
+          <Property Name="MaNhom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenNhom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HinhAnh01" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="LoaiSanPhams" Relationship="Self.FK_LoaiSanPham_NhomLoaiSanPham" FromRole="NhomLoaiSanPham" ToRole="LoaiSanPham" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
             <PropertyRef Name="MaSP" />
           </Key>
           <Property Name="MaSP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaLoaiSP" Type="Int32" Nullable="false" />
+          <Property Name="MaLoaiSP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="TenSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="GiaHienHanh" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="KhuyenMai" Type="Int32" />
-          <Property Name="GiaThuc" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="SoLuong" Type="Int32" />
+          <Property Name="GiaHienHanh" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GiaThuc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KhuyenMai" Type="Int32" />
           <Property Name="NgayThemSP" Type="DateTime" Precision="0" />
           <Property Name="MoTa" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="HinhAnh01" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -330,8 +340,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LoaiSanPham_NhomLoaiSanPham">
+          <End Role="NhomLoaiSanPham" Type="Self.NhomLoaiSanPham" Multiplicity="0..1" />
+          <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhomLoaiSanPham">
+              <PropertyRef Name="MaNhom" />
+            </Principal>
+            <Dependent Role="LoaiSanPham">
+              <PropertyRef Name="MaNhom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SanPham_LoaiSanPham">
-          <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="1" />
+          <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="0..1" />
           <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoaiSanPham">
@@ -342,11 +364,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="eshopContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="eshopEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChiTietHoaDons" EntityType="Self.ChiTietHoaDon" />
           <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
           <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
           <EntitySet Name="LoaiSanPhams" EntityType="Self.LoaiSanPham" />
+          <EntitySet Name="NhomLoaiSanPhams" EntityType="Self.NhomLoaiSanPham" />
           <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <AssociationSet Name="FK_ChiTietHoaDon_HoaDon" Association="Self.FK_ChiTietHoaDon_HoaDon">
@@ -360,6 +383,10 @@
           <AssociationSet Name="FK_HoaDon_KhachHang1" Association="Self.FK_HoaDon_KhachHang1">
             <End Role="KhachHang" EntitySet="KhachHangs" />
             <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoaiSanPham_NhomLoaiSanPham" Association="Self.FK_LoaiSanPham_NhomLoaiSanPham">
+            <End Role="NhomLoaiSanPham" EntitySet="NhomLoaiSanPhams" />
+            <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
           </AssociationSet>
           <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="Self.FK_SanPham_LoaiSanPham">
             <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
@@ -395,11 +422,6 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="NhomLoaiSanPhams" EntityType="eshopModel.NhomLoaiSanPham" />
-          <AssociationSet Name="FK_LoaiSanPham_NhomLoaiSanPham" Association="eshopModel.FK_LoaiSanPham_NhomLoaiSanPham">
-            <End Role="NhomLoaiSanPham" EntitySet="NhomLoaiSanPhams" />
-            <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
-          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -412,33 +434,12 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <EntityType Name="NhomLoaiSanPham">
-          <Key>
-            <PropertyRef Name="MaNhom" />
-          </Key>
-          <Property Name="MaNhom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TenNhom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="HinhAnh01" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="LoaiSanPhams" Relationship="eshopModel.FK_LoaiSanPham_NhomLoaiSanPham" FromRole="NhomLoaiSanPham" ToRole="LoaiSanPham" />
-        </EntityType>
-        <Association Name="FK_LoaiSanPham_NhomLoaiSanPham">
-          <End Type="eshopModel.NhomLoaiSanPham" Role="NhomLoaiSanPham" Multiplicity="0..1" />
-          <End Type="eshopModel.LoaiSanPham" Role="LoaiSanPham" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NhomLoaiSanPham">
-              <PropertyRef Name="MaNhom" />
-            </Principal>
-            <Dependent Role="LoaiSanPham">
-              <PropertyRef Name="MaNhom" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="eshopModelStoreContainer" CdmEntityContainer="eshopContext">
+        <EntityContainerMapping StorageEntityContainer="eshopModelStoreContainer" CdmEntityContainer="eshopEntities">
           <EntitySetMapping Name="ChiTietHoaDons">
             <EntityTypeMapping TypeName="eshopModel.ChiTietHoaDon">
               <MappingFragment StoreEntitySet="ChiTietHoaDon">
@@ -482,9 +483,18 @@
           <EntitySetMapping Name="LoaiSanPhams">
             <EntityTypeMapping TypeName="eshopModel.LoaiSanPham">
               <MappingFragment StoreEntitySet="LoaiSanPham">
-                <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
                 <ScalarProperty Name="MaLoaiSP" ColumnName="MaLoaiSP" />
                 <ScalarProperty Name="TenLoaiSP" ColumnName="TenLoaiSP" />
+                <ScalarProperty Name="HinhAnh01" ColumnName="HinhAnh01" />
+                <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhomLoaiSanPhams">
+            <EntityTypeMapping TypeName="eshopModel.NhomLoaiSanPham">
+              <MappingFragment StoreEntitySet="NhomLoaiSanPham">
+                <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
+                <ScalarProperty Name="TenNhom" ColumnName="TenNhom" />
                 <ScalarProperty Name="HinhAnh01" ColumnName="HinhAnh01" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -495,10 +505,10 @@
                 <ScalarProperty Name="MaSP" ColumnName="MaSP" />
                 <ScalarProperty Name="MaLoaiSP" ColumnName="MaLoaiSP" />
                 <ScalarProperty Name="TenSP" ColumnName="TenSP" />
-                <ScalarProperty Name="GiaHienHanh" ColumnName="GiaHienHanh" />
-                <ScalarProperty Name="KhuyenMai" ColumnName="KhuyenMai" />
-                <ScalarProperty Name="GiaThuc" ColumnName="GiaThuc" />
                 <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="GiaHienHanh" ColumnName="GiaHienHanh" />
+                <ScalarProperty Name="GiaThuc" ColumnName="GiaThuc" />
+                <ScalarProperty Name="KhuyenMai" ColumnName="KhuyenMai" />
                 <ScalarProperty Name="NgayThemSP" ColumnName="NgayThemSP" />
                 <ScalarProperty Name="MoTa" ColumnName="MoTa" />
                 <ScalarProperty Name="HinhAnh01" ColumnName="HinhAnh01" />
@@ -542,15 +552,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="eshopModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="eshopModel.Store.sp_upgraddiagrams" />
-          <EntitySetMapping Name="NhomLoaiSanPhams">
-            <EntityTypeMapping TypeName="eshopModel.NhomLoaiSanPham">
-              <MappingFragment StoreEntitySet="NhomLoaiSanPham">
-                <ScalarProperty Name="HinhAnh01" ColumnName="HinhAnh01" />
-                <ScalarProperty Name="TenNhom" ColumnName="TenNhom" />
-                <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

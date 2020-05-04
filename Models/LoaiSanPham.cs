@@ -20,13 +20,13 @@ namespace thewayshop.Models
             this.SanPhams = new HashSet<SanPham>();
         }
     
-        public int MaLoaiSP { get; set; }
+        public string MaLoaiSP { get; set; }
         public string TenLoaiSP { get; set; }
         public string HinhAnh01 { get; set; }
         public string MaNhom { get; set; }
     
+        public virtual NhomLoaiSanPham NhomLoaiSanPham { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SanPham> SanPhams { get; set; }
-        public virtual NhomLoaiSanPham NhomLoaiSanPham { get; set; }
     }
 }

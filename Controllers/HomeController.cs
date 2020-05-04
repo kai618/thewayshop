@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using thewayshop.Models;
 
@@ -8,7 +6,7 @@ namespace thewayshop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly eshopContext _ctx = new eshopContext();
+        private readonly eshopEntities _ctx = new eshopEntities();
 
         public ActionResult Index()
         {

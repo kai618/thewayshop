@@ -15,7 +15,7 @@
 
         <div class="shop-cat-box">
           <img class="img-fluid" src="@Model[i].HinhAnh01" alt=""/>
-          <a class="btn hvr-hover" href="#">@Model[i].TenLoaiSP</a>
+          <a class="btn hvr-hover" href=@Url.Action("Filter", "Product", new {typeId = Model[i].MaLoaiSP})>@Model[i].TenLoaiSP</a>
         </div>
 
         if (i % typePerCol == typePerCol - 1 || i == Model.Count - 1)

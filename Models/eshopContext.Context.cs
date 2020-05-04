@@ -15,10 +15,10 @@ namespace thewayshop.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class eshopContext : DbContext
+    public partial class eshopEntities : DbContext
     {
-        public eshopContext()
-            : base("name=eshopContext")
+        public eshopEntities()
+            : base("name=eshopEntities")
         {
         }
     
@@ -31,9 +31,9 @@ namespace thewayshop.Models
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
         public virtual DbSet<LoaiSanPham> LoaiSanPhams { get; set; }
+        public virtual DbSet<NhomLoaiSanPham> NhomLoaiSanPhams { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<NhomLoaiSanPham> NhomLoaiSanPhams { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

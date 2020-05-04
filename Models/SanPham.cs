@@ -21,12 +21,12 @@ namespace thewayshop.Models
         }
     
         public int MaSP { get; set; }
-        public int MaLoaiSP { get; set; }
+        public string MaLoaiSP { get; set; }
         public string TenSP { get; set; }
-        public Nullable<decimal> GiaHienHanh { get; set; }
-        public Nullable<int> KhuyenMai { get; set; }
-        public Nullable<decimal> GiaThuc { get; set; }
         public Nullable<int> SoLuong { get; set; }
+        public Nullable<decimal> GiaHienHanh { get; set; }
+        public Nullable<decimal> GiaThuc { get; set; }
+        public Nullable<int> KhuyenMai { get; set; }
         public Nullable<System.DateTime> NgayThemSP { get; set; }
         public string MoTa { get; set; }
         public string HinhAnh01 { get; set; }
@@ -39,7 +39,7 @@ namespace thewayshop.Models
         public static DateTime threshold = DateTime.Today.AddMonths(-1);
         public ShowcaseType LayLoaiTrungBay()
         {
-            if (NgayThemSP > threshold) return ShowcaseType.New;
+            if (NgayThemSP > threshold && KhuyenMai == 0) return ShowcaseType.New;
             else if (KhuyenMai > 0) return ShowcaseType.Sale;
             return ShowcaseType.Normal;
         }

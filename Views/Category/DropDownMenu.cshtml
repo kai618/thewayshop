@@ -11,13 +11,13 @@
         @foreach (var tg in tgs)
         {
           <div class="col-menu col-md-3">
-            <h6 class="title">@tg.Group.TenNhom</h6>
+            <h6 class="title">@tg.Name</h6>
             <div class="content">
               <ul class="menu-col">
                 @foreach (var t in tg.Types)
                 {
                   <li>
-                    <a href=@Url.Action("Filter", "Product", new {typeId = t.MaLoaiSP})>@t.TenLoaiSP</a>
+                    <a href=@Url.Action("Filter", "Product", new {typeId = t.Id})>@t.Name</a>
                   </li>
                 }
 

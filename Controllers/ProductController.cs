@@ -9,8 +9,10 @@ namespace thewayshop.Controllers
     public class ProductController : Controller
     {
         // GET: Shop
-        public ActionResult Filter(int typeId)
+        public ActionResult Filter(string typeId)
         {
+            ViewBag.selectedType = typeId;
+
             return View();
         }
     }
