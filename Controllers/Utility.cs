@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Globalization;
+using System.Collections.Generic;
 using System.Threading;
-using System.Web.WebPages;
 
 namespace thewayshop.Controllers
 {
@@ -13,6 +12,26 @@ namespace thewayshop.Controllers
             var textInfo = cultureInfo.TextInfo;
 
             return textInfo.ToTitleCase(str);
+        }
+
+        public static List<T> GetRandomElements<T>(List<T> list, int count)
+        {
+            var ran = new Random();
+            if (count > list.Count && count < 1) count = list.Count;
+
+            var clonedList = new List<T>(list.Count);
+            var randomisedList = new List<T>(count);
+
+            list.ForEach(e => clonedList.Add(e));
+
+            for (var i = 0; i < count; i++)
+            {
+                var product = clonedList[ran.Next(clonedList.Count)];
+                randomisedList.Add(product);
+                clonedList.Remove(product);
+            }
+
+            return randomisedList;
         }
     }
 }

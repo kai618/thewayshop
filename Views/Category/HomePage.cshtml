@@ -1,0 +1,29 @@
+﻿@model List<thewayshop.Models.LoaiSanPham>
+
+<div class="categories-shop">
+  <div class="container">
+    <div class="row">
+      @{
+        const int typePerCol = 2;
+      }
+      @for (var i = 0; i < Model.Count; i++)
+      {
+        if (i % typePerCol == 0)
+        {
+          @Html.Raw("<div class=\"col-sm\">")
+        }
+
+        <div class="shop-cat-box">
+          <img class="img-fluid" src="@Model[i].HinhAnh01" alt=""/>
+          <a class="btn hvr-hover" href="#">@Model[i].TenLoaiSP</a>
+        </div>
+
+        if (i % typePerCol == typePerCol - 1 || i == Model.Count - 1)
+        {
+          @Html.Raw("</div>")
+        }
+      }
+
+    </div>
+  </div>
+</div>

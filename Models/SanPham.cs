@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using thewayshop.Controllers;
-
 namespace thewayshop.Models
 {
     using System;
@@ -38,11 +36,10 @@ namespace thewayshop.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public virtual LoaiSanPham LoaiSanPham { get; set; }
-
         public static DateTime threshold = DateTime.Today.AddMonths(-1);
         public ShowcaseType LayLoaiTrungBay()
         {
-            if (NgayThemSP > threshold && KhuyenMai == 0) return ShowcaseType.New;
+            if (NgayThemSP > threshold) return ShowcaseType.New;
             else if (KhuyenMai > 0) return ShowcaseType.Sale;
             return ShowcaseType.Normal;
         }

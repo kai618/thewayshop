@@ -12,21 +12,19 @@ namespace thewayshop.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LoaiSanPham
+    public partial class NhomLoaiSanPham
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LoaiSanPham()
+        public NhomLoaiSanPham()
         {
-            this.SanPhams = new HashSet<SanPham>();
+            this.LoaiSanPhams = new HashSet<LoaiSanPham>();
         }
     
-        public int MaLoaiSP { get; set; }
-        public string TenLoaiSP { get; set; }
-        public string HinhAnh01 { get; set; }
         public string MaNhom { get; set; }
+        public string TenNhom { get; set; }
+        public string HinhAnh01 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SanPham> SanPhams { get; set; }
-        public virtual NhomLoaiSanPham NhomLoaiSanPham { get; set; }
+        public virtual ICollection<LoaiSanPham> LoaiSanPhams { get; set; }
     }
 }
