@@ -19,7 +19,7 @@
       <div class="list-group">
         @foreach (var t in tg.Types)
         {
-          var activeClassStr = t.Id == selectedType ? "active" : "";
+          var activeClassStr = (t.Id == selectedType) ? "active" : "";
 
           <a href=@Url.Action("Filter", "Product", new {typeId = t.Id}) class="list-group-item list-group-item-action @activeClassStr">
             @t.Name <small class="text-muted">(@t.Count)</small>

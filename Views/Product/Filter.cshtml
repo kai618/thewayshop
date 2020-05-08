@@ -1,8 +1,10 @@
-﻿@model thewayshop.Models.SanPham
-
+﻿@using thewayshop.Controllers
 @{
   ViewBag.Title = "Filter";
   Layout = "~/Views/Shared/_Layout.cshtml";
+
+  var products = (List<thewayshop.Models.SanPham>) ViewBag.products;
+  var selectedType = ViewBag.selectedType;
 }
 
 
@@ -44,7 +46,7 @@
       <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
 
         <!-- Type Group Start-->
-        @Html.Action("ProductPage", "Category", new {typeId = ViewBag.selectedType})
+        @Html.Action("ProductPage", "Category", new {typeId = ViewBag.selectedType })
         <!-- Type Group End-->
       </div>
     </div>
@@ -60,7 +62,8 @@
         </p>
       </div>
     </div>
-    <div class="filter-brand-left">
+    <!-- Brand List Start-->
+    @*<div class="filter-brand-left">
       <div class="title-left">
         <h3>Brand</h3>
       </div>
@@ -128,12 +131,14 @@
           </li>
         </ul>
       </div>
-    </div>
-
+    </div>*@
+    <!-- Brand List End-->
   </div>
 </div>
+
 <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
 <div class="right-product-box">
+<!--Filter Row Start-->
 <div class="product-item-filter row">
   <div class="col-12 col-sm-8 text-center text-sm-left">
     <div class="toolbar-sorter-right">
@@ -163,319 +168,134 @@
     </ul>
   </div>
 </div>
-
+<!--Filter Row End-->
+<!--Product List Start-->
 <div class="row product-categorie-box">
 <div class="tab-content">
+<!--Product Grid View Start-->
 <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
-<div class="row">
-<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-  <div class="products-single fix">
-    <div class="box-img-hover">
-      <div class="type-lb">
-        <p class="sale">Sale</p>
-      </div>
-      <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
-      <div class="mask-icon">
-        <ul>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="View">
-              <i class="fas fa-eye"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-              <i class="fas fa-sync-alt"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
-              <i class="far fa-heart"></i>
-            </a>
-          </li>
-        </ul>
-        <a class="cart" href="#">Add to Cart</a>
-      </div>
+    <div class="row">
+        @for (var i = 0; i < products.Count; i++)
+        {
+            if (products[i].LayLoaiTrungBay() == ShowcaseType.New)
+            {
+                <div class="col-sm-6 col-lg-4">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="new">New</p>
+                            </div>
+                            <img src="@products[i].HinhAnh01" class="img-fluid img-cover" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li>
+                                        <a href="#" data-toggle="tooltip" data-placement="right" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
+                                            <i class="far fa-heart"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <a class="cart" href="#">Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>@Utility.StringCapitalise(products[i].TenSP)</h4>
+                            <h5> $@products[i].GiaThuc</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+            else if (products[i].LayLoaiTrungBay() == ShowcaseType.Sale)
+            {
+                <div class="col-sm-6 col-lg-4">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="sale">Sale</p>
+                            </div>
+                            <img src="@products[i].HinhAnh01" class="img-fluid img-cover" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li>
+                                        <a href="#" data-toggle="tooltip" data-placement="right" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
+                                            <i class="far fa-heart"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <a class="cart" href="#">Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>@Utility.StringCapitalise(products[i].TenSP)</h4>
+                            <h5> $@products[i].GiaThuc</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+              <div class="col-sm-6 col-lg-4">
+                <div class="products-single fix">
+                  <div class="box-img-hover">
+                    @*<div class="type-lb">
+                      <p class="sale">Sale</p>
+                    </div>*@
+                    <img src="@products[i].HinhAnh01" class="img-fluid img-cover" alt="Image">
+                    <div class="mask-icon">
+                      <ul>
+                        <li>
+                          <a href="#" data-toggle="tooltip" data-placement="right" title="View">
+                            <i class="fas fa-eye"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
+                            <i class="fas fa-sync-alt"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
+                            <i class="far fa-heart"></i>
+                          </a>
+                        </li>
+                      </ul>
+                      <a class="cart" href="#">Add to Cart</a>
+                    </div>
+                  </div>
+                  <div class="why-text">
+                    <h4>@Utility.StringCapitalise(products[i].TenSP)</h4>
+                    <h5> $@products[i].GiaThuc</h5>
+                  </div>
+                </div>
+              </div>
+            }
+        }
+
+
     </div>
-    <div class="why-text">
-      <h4>Lorem ipsum dolor sit amet</h4>
-      <h5> $9.79</h5>
-    </div>
-  </div>
 </div>
-<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-  <div class="products-single fix">
-    <div class="box-img-hover">
-      <div class="type-lb">
-        <p class="new">New</p>
-      </div>
-      <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
-      <div class="mask-icon">
-        <ul>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="View">
-              <i class="fas fa-eye"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-              <i class="fas fa-sync-alt"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
-              <i class="far fa-heart"></i>
-            </a>
-          </li>
-        </ul>
-        <a class="cart" href="#">Add to Cart</a>
-      </div>
-    </div>
-    <div class="why-text">
-      <h4>Lorem ipsum dolor sit amet</h4>
-      <h5> $9.79</h5>
-    </div>
-  </div>
-</div>
-<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-  <div class="products-single fix">
-    <div class="box-img-hover">
-      <div class="type-lb">
-        <p class="sale">Sale</p>
-      </div>
-      <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
-      <div class="mask-icon">
-        <ul>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="View">
-              <i class="fas fa-eye"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-              <i class="fas fa-sync-alt"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
-              <i class="far fa-heart"></i>
-            </a>
-          </li>
-        </ul>
-        <a class="cart" href="#">Add to Cart</a>
-      </div>
-    </div>
-    <div class="why-text">
-      <h4>Lorem ipsum dolor sit amet</h4>
-      <h5> $9.79</h5>
-    </div>
-  </div>
-</div>
-<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-  <div class="products-single fix">
-    <div class="box-img-hover">
-      <div class="type-lb">
-        <p class="new">New</p>
-      </div>
-      <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
-      <div class="mask-icon">
-        <ul>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="View">
-              <i class="fas fa-eye"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-              <i class="fas fa-sync-alt"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
-              <i class="far fa-heart"></i>
-            </a>
-          </li>
-        </ul>
-        <a class="cart" href="#">Add to Cart</a>
-      </div>
-    </div>
-    <div class="why-text">
-      <h4>Lorem ipsum dolor sit amet</h4>
-      <h5> $9.79</h5>
-    </div>
-  </div>
-</div>
-<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-  <div class="products-single fix">
-    <div class="box-img-hover">
-      <div class="type-lb">
-        <p class="sale">Sale</p>
-      </div>
-      <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
-      <div class="mask-icon">
-        <ul>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="View">
-              <i class="fas fa-eye"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-              <i class="fas fa-sync-alt"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
-              <i class="far fa-heart"></i>
-            </a>
-          </li>
-        </ul>
-        <a class="cart" href="#">Add to Cart</a>
-      </div>
-    </div>
-    <div class="why-text">
-      <h4>Lorem ipsum dolor sit amet</h4>
-      <h5> $9.79</h5>
-    </div>
-  </div>
-</div>
-<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-  <div class="products-single fix">
-    <div class="box-img-hover">
-      <div class="type-lb">
-        <p class="sale">Sale</p>
-      </div>
-      <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
-      <div class="mask-icon">
-        <ul>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="View">
-              <i class="fas fa-eye"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-              <i class="fas fa-sync-alt"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
-              <i class="far fa-heart"></i>
-            </a>
-          </li>
-        </ul>
-        <a class="cart" href="#">Add to Cart</a>
-      </div>
-    </div>
-    <div class="why-text">
-      <h4>Lorem ipsum dolor sit amet</h4>
-      <h5> $9.79</h5>
-    </div>
-  </div>
-</div>
-<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-  <div class="products-single fix">
-    <div class="box-img-hover">
-      <div class="type-lb">
-        <p class="sale">Sale</p>
-      </div>
-      <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
-      <div class="mask-icon">
-        <ul>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="View">
-              <i class="fas fa-eye"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-              <i class="fas fa-sync-alt"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
-              <i class="far fa-heart"></i>
-            </a>
-          </li>
-        </ul>
-        <a class="cart" href="#">Add to Cart</a>
-      </div>
-    </div>
-    <div class="why-text">
-      <h4>Lorem ipsum dolor sit amet</h4>
-      <h5> $9.79</h5>
-    </div>
-  </div>
-</div>
-<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-  <div class="products-single fix">
-    <div class="box-img-hover">
-      <div class="type-lb">
-        <p class="sale">Sale</p>
-      </div>
-      <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
-      <div class="mask-icon">
-        <ul>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="View">
-              <i class="fas fa-eye"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-              <i class="fas fa-sync-alt"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
-              <i class="far fa-heart"></i>
-            </a>
-          </li>
-        </ul>
-        <a class="cart" href="#">Add to Cart</a>
-      </div>
-    </div>
-    <div class="why-text">
-      <h4>Lorem ipsum dolor sit amet</h4>
-      <h5> $9.79</h5>
-    </div>
-  </div>
-</div>
-<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-  <div class="products-single fix">
-    <div class="box-img-hover">
-      <div class="type-lb">
-        <p class="new">New</p>
-      </div>
-      <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
-      <div class="mask-icon">
-        <ul>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="View">
-              <i class="fas fa-eye"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Compare">
-              <i class="fas fa-sync-alt"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
-              <i class="far fa-heart"></i>
-            </a>
-          </li>
-        </ul>
-        <a class="cart" href="#">Add to Cart</a>
-      </div>
-    </div>
-    <div class="why-text">
-      <h4>Lorem ipsum dolor sit amet</h4>
-      <h5> $9.79</h5>
-    </div>
-  </div>
-</div>
-</div>
-</div>
+<!--Product Grid View End-->
+
+<!--Product List View Start-->
 <div role="tabpanel" class="tab-pane fade" id="list-view">
   <div class="list-view-box">
     <div class="row">
@@ -616,11 +436,13 @@
     </div>
   </div>
 </div>
+<!--Product List View End-->
+</div>
+</div>
+<!--Product List End-->
 </div>
 </div>
 
-</div>
-</div>
 </div>
 </div>
 </div>
