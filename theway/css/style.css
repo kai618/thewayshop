@@ -2346,7 +2346,7 @@ ul.cart-list > li.total > .btn:hover { color: #ffffff; }
 .carousel-indicators {
     position: relative;
     bottom: 0;
-    background: #010101;
+    background: white;
 }
 
 .carousel-indicators li {

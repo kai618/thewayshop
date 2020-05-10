@@ -17,7 +17,7 @@ namespace thewayshop.Controllers
         public static List<T> GetRandomElements<T>(List<T> list, int count)
         {
             var ran = new Random();
-            if (count > list.Count && count < 1) count = list.Count;
+            if (count > list.Count || count < 1) count = list.Count;
 
             var clonedList = new List<T>(list.Count);
             var randomisedList = new List<T>(count);
