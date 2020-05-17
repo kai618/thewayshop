@@ -1,0 +1,68 @@
+﻿@model thewayshop.ViewModel.SignupUser
+
+@{
+  ViewBag.Title = "Sign Up Page";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Start All Title Box -->
+<div class="all-title-box">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2>My Account</h2>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#">User</a>
+          </li>
+          <li class="breadcrumb-item active">Sign Up</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End All Title Box -->
+<!-- Start My Account  -->
+<section id="form">
+  <!--form-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        @using (Html.BeginForm("SignUp", "User", FormMethod.Post))
+        {
+          <h2>New User Signup!</h2>
+          @Html.ValidationMessage("UserUnavailable", new {@class = "text-danger"})
+
+          <div class="form-group">
+            @Html.TextBoxFor(m => m.UserName, new {@placeholder = "User Name *", @class = "form-control"})
+            @Html.ValidationMessageFor(m => m.UserName, null, new {@class = "text-danger"})
+          </div>
+
+          <div class="form-group">
+            @Html.PasswordFor(m => m.Password, new {@placeholder = "Password *", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password, null, new {@class = "text-danger"})
+          </div>
+
+          <div class="form-group">
+
+            @Html.PasswordFor(m => m.ConfirmPassword, new {@placeholder = "Confirm Password *", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, null, new {@class = "text-danger"})
+          </div>
+
+          <div class="form-group">
+            @Html.TextBoxFor(m => m.Email, new {@placeholder = "Email *", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email, null, new {@class = "text-danger"})
+          </div>
+
+          <div class="form-group">
+            @Html.TextBoxFor(m => m.PhoneNumber, new {@placeholder = "Address (Optional)", @class = "form-control" })
+          </div>
+          <button type="submit" class="btn btn-danger" value="Register">Signup</button>
+        }
+      </div>
+      <!--/sign up form-->
+    </div>
+  </div >
+</section >
+
+<!--EndMy Account-->

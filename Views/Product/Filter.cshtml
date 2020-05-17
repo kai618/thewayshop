@@ -35,7 +35,7 @@
                     <div class="search-product">
                         @using (Html.BeginForm("Search", "Product", method: FormMethod.Post))
                         {
-                            @Html.TextBoxFor(m => m)
+                            @*@Html.TextBoxFor(m => m)*@
 
                             <input class="form-control" placeholder="Search here..." name="keyword" type="text">
                             <button type="submit">
