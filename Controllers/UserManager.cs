@@ -1,45 +1,56 @@
-﻿using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
+﻿using System.Data.Entity.Validation;
+using System.Diagnostics;
+using System.Linq;
 using thewayshop.Models;
+using thewayshop.ViewModel;
 
 namespace thewayshop.Controllers
 {
-    public static class UserManager
+    public class UserManager
     {
-        private static readonly eshopEntities Ctx = new eshopEntities();
+        private readonly eshopEntities _ctx = new eshopEntities();
 
-        public static bool UserNameExists(string userName)
+        public bool SignUp(SignupUser user)
         {
-            return Ctx.KhachHangs.Any(kh => kh.TenKH == userName);
+            if (UserNameExists(user.UserName) || EmailExists(user.Email)) return false;
+
+
+            try
+            {
+                _ctx.KhachHangs.Add(new KhachHang
+                {
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Password = Utility.GetMd5Hash(user.Password),
+                    SDT = user.PhoneNumber,
+                });
+                _ctx.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
 
-        public static bool EmailExists(string email)
+        private bool UserNameExists(string userName)
         {
-            return Ctx.KhachHangs.Any(kh => kh.Email == email);
+            return _ctx.KhachHangs.Any(kh => kh.UserName == userName);
         }
 
-        public static bool PasswordMatches(string userName, string password)
+        private bool EmailExists(string email)
         {
-            var user = Ctx.KhachHangs.FirstOrDefault(kh => kh.TenKH == userName);
+            return _ctx.KhachHangs.Any(kh => kh.Email == email);
+        }
+
+        public bool SignIn(string userName, string password)
+        {
+            var user = _ctx.KhachHangs.FirstOrDefault(kh => kh.UserName == userName);
             if (user == null) return false;
 
-            var hash = GetMd5Hash(password);
+            var hash = Utility.GetMd5Hash(password);
             return user.Password == hash;
-        }
-
-        public static string GetMd5Hash(string text)
-        {
-            MD5 md5Sv = new MD5CryptoServiceProvider();
-            // Convert the input string to a byte array and compute the hash.
-            md5Sv.ComputeHash(Encoding.ASCII.GetBytes(text));
-            var bytes = md5Sv.Hash;
-
-            var strBuilder = new StringBuilder(); 
-            // Loop through each byte of the hashed data
-            // and format each one as a hexadecimal string.
-            foreach (var b in bytes) strBuilder.Append(b.ToString("x2"));
-            return strBuilder.ToString();
         }
     }
 }

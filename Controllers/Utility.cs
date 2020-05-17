@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading;
 
 namespace thewayshop.Controllers
@@ -32,6 +34,20 @@ namespace thewayshop.Controllers
             }
 
             return randomisedList;
+        }
+
+        public static string GetMd5Hash(string text)
+        {
+            MD5 md5Sv = new MD5CryptoServiceProvider();
+            // Convert the input string to a byte array and compute the hash.
+            md5Sv.ComputeHash(Encoding.ASCII.GetBytes(text));
+            var bytes = md5Sv.Hash;
+
+            var strBuilder = new StringBuilder();
+            // Loop through each byte of the hashed data
+            // and format each one as a hexadecimal string.
+            foreach (var b in bytes) strBuilder.Append(b.ToString("x2"));
+            return strBuilder.ToString();
         }
     }
 }
