@@ -13,7 +13,7 @@ namespace thewayshop.Controllers
         {
             ViewBag.selectedType = typeId;
             ViewBag.products = _ctx.SanPhams.Where(s => s.MaLoaiSP == typeId).ToList();
-
+            
             return View();
         }
 

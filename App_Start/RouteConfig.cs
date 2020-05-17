@@ -16,7 +16,7 @@ namespace thewayshop
             routes.MapRoute(
                 name: "Product Filter",
                 url: "Product/{typeId}",
-                defaults: new {controller = "Product", action = "Filter", typeId = "jacket"}
+                defaults: new {controller = "Product", action = "Filter"}
             );
 
             routes.MapRoute(

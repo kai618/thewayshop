@@ -349,6 +349,7 @@
     <Content Include="Views\Category\DropDownMenu.cshtml" />
     <Content Include="Views\Category\ProductPage.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="theway\images\product\backpack-01.webp" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
