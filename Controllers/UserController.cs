@@ -31,5 +31,11 @@ namespace thewayshop.Controllers
                 "The user name or email address has already existed!");
             return View();
         }
+
+        // Testing only
+        //public ActionResult Welcome()
+        //{
+        //    return View();
+        //}
     }
 }

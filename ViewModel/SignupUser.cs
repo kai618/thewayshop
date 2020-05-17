@@ -8,7 +8,7 @@ namespace thewayshop.ViewModel
         [Display(Name = "User name")]
         public string UserName { get; set; }
 
-        [Required] public string Password { get; set; }
+        [Required] [MinLength(3)] public string Password { get; set; }
 
         [Required]
         [Display(Name = "Confirm Password")]
@@ -18,5 +18,14 @@ namespace thewayshop.ViewModel
         [Required] public string Email { get; set; }
 
         [Display(Name = "Phone Number")] public string PhoneNumber { get; set; }
+    }
+
+    public class SignInUser
+    {
+        [Required]
+        [Display(Name = "User name")]
+        public string UserName { get; set; }
+
+        [Required] [MinLength(3)] public string Password { get; set; }
     }
 }
