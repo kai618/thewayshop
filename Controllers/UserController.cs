@@ -47,6 +47,13 @@ namespace thewayshop.Controllers
             return View();
         }
 
+
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
         // Testing only
         //public ActionResult Welcome()
         //{

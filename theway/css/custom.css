@@ -1,3 +1,10 @@
 /** ADD YOUR AWESOME CODES HERE **/
 
-.img-cover { object-fit: cover; }
+.img-cover {
+    object-fit: cover;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}

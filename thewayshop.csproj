@@ -356,6 +356,7 @@
     <Content Include="Views\User\SignUp.cshtml" />
     <Content Include="Views\User\Welcome.cshtml" />
     <Content Include="Views\User\SignIn.cshtml" />
+    <Content Include="Views\Shared\_TopBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -38,237 +38,171 @@
 
 <body>
 
-<!-- Start Main Top Bar -->
-<div class="main-top">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <div class="text-slid-box">
-          <div id="offer-box" class="carouselTicker">
-            <ul class="offer-box">
-              <li>
-                <i class="fab fa-opencart"></i> Off 10%! Shop Now Man
-              </li>
-              <li>
-                <i class="fab fa-opencart"></i> 50% - 80% off on Fashion
-              </li>
-              <li>
-                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT20
-              </li>
-              <li>
-                <i class="fab fa-opencart"></i> Off 50%! Shop Now
-              </li>
-              <li>
-                <i class="fab fa-opencart"></i> Off 10%! Shop Now Man
-              </li>
-              <li>
-                <i class="fab fa-opencart"></i> 50% - 80% off on Fashion
-              </li>
-              <li>
-                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT20
-              </li>
-              <li>
-                <i class="fab fa-opencart"></i> Off 50%! Shop Now
-              </li>
-            </ul>
+  <!-- Start Main Top Bar -->
+  @Html.Partial("_TopBar");
+  <!-- End Main Top Bar -->
+  <!-- Start Main Top Nav -->
+  @Html.Partial("_MainTopNav")
+  <!-- End Main Top Nav -->
+  <!-- Start Top Search -->
+  <div class="top-search">
+    <div class="container">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-search"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Search">
+        <span class="input-group-addon close-search">
+          <i class="fa fa-times"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+  <!-- End Top Search -->
+
+  @RenderBody()
+
+  <!-- Start Instagram Feed  -->
+  <div class="instagram-box">
+    <div class="main-instagram owl-carousel owl-theme">
+      <div class="item">
+        <div class="ins-inner-box">
+          <img src="~/theway/images/instagram-img-01.jpg" alt="" />
+          <div class="hov-in">
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
           </div>
         </div>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <div class="custom-select-box">
-          <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-            <option>¥ JPY</option>
-            <option>$ USD</option>
-            <option>€ EUR</option>
-          </select>
+      <div class="item">
+        <div class="ins-inner-box">
+          <img src="~/theway/images/instagram-img-02.jpg" alt="" />
+          <div class="hov-in">
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
         </div>
-        <div class="right-phone-box">
-          <p>Call US :- <a href="#"> +11 900 800 100</a></p>
+      </div>
+      <div class="item">
+        <div class="ins-inner-box">
+          <img src="~/theway/images/instagram-img-03.jpg" alt="" />
+          <div class="hov-in">
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
         </div>
-        <div class="our-link">
-          <ul>
-            <li>
-              <a href="#">My Account</a>
-            </li>
-            <li>
-              <a href="#">Our location</a>
-            </li>
-            <li>
-              <a href="#">Contact Us</a>
-            </li>
-          </ul>
+      </div>
+      <div class="item">
+        <div class="ins-inner-box">
+          <img src="~/theway/images/instagram-img-04.jpg" alt="" />
+          <div class="hov-in">
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="ins-inner-box">
+          <img src="~/theway/images/instagram-img-05.jpg" alt="" />
+          <div class="hov-in">
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="ins-inner-box">
+          <img src="~/theway/images/instagram-img-06.jpg" alt="" />
+          <div class="hov-in">
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="ins-inner-box">
+          <img src="~/theway/images/instagram-img-07.jpg" alt="" />
+          <div class="hov-in">
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="ins-inner-box">
+          <img src="~/theway/images/instagram-img-08.jpg" alt="" />
+          <div class="hov-in">
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="ins-inner-box">
+          <img src="~/theway/images/instagram-img-09.jpg" alt="" />
+          <div class="hov-in">
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="ins-inner-box">
+          <img src="~/theway/images/instagram-img-05.jpg" alt="" />
+          <div class="hov-in">
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- End Main Top Bar -->
-
-<!-- Start Main Top Nav -->
-@Html.Partial("_MainTopNav")
-<!-- End Main Top Nav -->
-
-<!-- Start Top Search -->
-<div class="top-search">
-  <div class="container">
-    <div class="input-group">
-      <span class="input-group-addon">
-        <i class="fa fa-search"></i>
-      </span>
-      <input type="text" class="form-control" placeholder="Search">
-      <span class="input-group-addon close-search">
-        <i class="fa fa-times"></i>
-      </span>
-    </div>
+  <!-- End Instagram Feed  -->
+  <!-- Start Footer  -->
+  @Html.Partial("_Footer")
+  <!-- End Footer  -->
+  <!-- Start copyright  -->
+  <div class="footer-copyright">
+    <p class="footer-company">
+      All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
+      <a href="https://html.design/">html design</a>
+    </p>
   </div>
-</div>
-<!-- End Top Search -->
+  <!-- End copyright  -->
 
-@RenderBody()
+  <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
-<!-- Start Instagram Feed  -->
-<div class="instagram-box">
-  <div class="main-instagram owl-carousel owl-theme">
-    <div class="item">
-      <div class="ins-inner-box">
-        <img src="~/theway/images/instagram-img-01.jpg" alt=""/>
-        <div class="hov-in">
-          <a href="#">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="ins-inner-box">
-        <img src="~/theway/images/instagram-img-02.jpg" alt=""/>
-        <div class="hov-in">
-          <a href="#">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="ins-inner-box">
-        <img src="~/theway/images/instagram-img-03.jpg" alt=""/>
-        <div class="hov-in">
-          <a href="#">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="ins-inner-box">
-        <img src="~/theway/images/instagram-img-04.jpg" alt=""/>
-        <div class="hov-in">
-          <a href="#">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="ins-inner-box">
-        <img src="~/theway/images/instagram-img-05.jpg" alt=""/>
-        <div class="hov-in">
-          <a href="#">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="ins-inner-box">
-        <img src="~/theway/images/instagram-img-06.jpg" alt=""/>
-        <div class="hov-in">
-          <a href="#">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="ins-inner-box">
-        <img src="~/theway/images/instagram-img-07.jpg" alt=""/>
-        <div class="hov-in">
-          <a href="#">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="ins-inner-box">
-        <img src="~/theway/images/instagram-img-08.jpg" alt=""/>
-        <div class="hov-in">
-          <a href="#">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="ins-inner-box">
-        <img src="~/theway/images/instagram-img-09.jpg" alt=""/>
-        <div class="hov-in">
-          <a href="#">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="ins-inner-box">
-        <img src="~/theway/images/instagram-img-05.jpg" alt=""/>
-        <div class="hov-in">
-          <a href="#">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End Instagram Feed  -->
+  <!-- ALL JS FILES -->
 
-<!-- Start Footer  -->
-@Html.Partial("_Footer")
-<!-- End Footer  -->
-
-<!-- Start copyright  -->
-<div class="footer-copyright">
-  <p class="footer-company">
-    All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
-    <a href="https://html.design/">html design</a>
-  </p>
-</div>
-<!-- End copyright  -->
-
-<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
-
-<!-- ALL JS FILES -->
-
-<script src="~/theway/js/jquery-3.2.1.min.js"></script>
-<script src="~/theway/js/popper.min.js"></script>
-<script src="~/theway/js/bootstrap.min.js"></script>
-<!-- ALL PLUGINS -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-        crossorigin="anonymous"></script>
-<script src="~/theway/js/jquery.superslides.min.js"></script>
-<script src="~/theway/js/jquery.nicescroll.min.js"></script>
-<script src="~/theway/js/bootstrap-select.js"></script>
-<script src="~/theway/js/inewsticker.js"></script>
-<script src="~/theway/js/bootsnav.js"></script>
-<script src="~/theway/js/images-loded.min.js"></script>
-<script src="~/theway/js/isotope.min.js"></script>
-<script src="~/theway/js/owl.carousel.min.js"></script>
-<script src="~/theway/js/baguetteBox.min.js"></script>
-<script src="~/theway/js/form-validator.min.js"></script>
-<script src="~/theway/js/contact-form-script.js"></script>
-<script src="~/theway/js/custom.js"></script>
+  <script src="~/theway/js/jquery-3.2.1.min.js"></script>
+  <script src="~/theway/js/popper.min.js"></script>
+  <script src="~/theway/js/bootstrap.min.js"></script>
+  <!-- ALL PLUGINS -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+          integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+          crossorigin="anonymous"></script>
+  <script src="~/theway/js/jquery.superslides.min.js"></script>
+  <script src="~/theway/js/jquery.nicescroll.min.js"></script>
+  <script src="~/theway/js/bootstrap-select.js"></script>
+  <script src="~/theway/js/inewsticker.js"></script>
+  <script src="~/theway/js/bootsnav.js"></script>
+  <script src="~/theway/js/images-loded.min.js"></script>
+  <script src="~/theway/js/isotope.min.js"></script>
+  <script src="~/theway/js/owl.carousel.min.js"></script>
+  <script src="~/theway/js/baguetteBox.min.js"></script>
+  <script src="~/theway/js/form-validator.min.js"></script>
+  <script src="~/theway/js/contact-form-script.js"></script>
+  <script src="~/theway/js/custom.js"></script>
 </body>
 
 </html>
