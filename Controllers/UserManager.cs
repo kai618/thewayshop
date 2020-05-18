@@ -39,13 +39,13 @@ namespace thewayshop.Controllers
             return _ctx.KhachHangs.Any(kh => kh.Email == email);
         }
 
-        public bool SignIn(string userName, string password)
+        public bool SignIn(SignInUser user)
         {
-            var user = _ctx.KhachHangs.FirstOrDefault(kh => kh.UserName == userName);
-            if (user == null) return false;
+            var validUser = _ctx.KhachHangs.FirstOrDefault(kh => kh.UserName == user.UserName);
+            if (validUser == null) return false;
 
-            var hash = Utility.GetMd5Hash(password);
-            return user.Password == hash;
+            var hash = Utility.GetMd5Hash(user.Password);
+            return validUser.Password == hash;
         }
     }
 }

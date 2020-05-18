@@ -34,6 +34,6 @@ namespace thewayshop.ViewModel
         [Display(Name = "User name")]
         public string UserName { get; set; }
 
-        [Required] [MinLength(3)] public string Password { get; set; }
+        [Required] [MinLength(6)] public string Password { get; set; }
     }
 }
