@@ -1,6 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
-using thewayshop.Models;
+﻿using System.Web.Mvc;
 using thewayshop.ViewModel;
 
 namespace thewayshop.Controllers
@@ -25,10 +23,7 @@ namespace thewayshop.Controllers
                 Session["user"] = user.UserName;
                 return View("Welcome");
             }
-
-
-            ModelState.AddModelError("unavailable",
-                "The user name or email address has already existed!");
+            ModelState.AddModelError("unavailable", "The user name or email address has already existed!");
             return View();
         }
 

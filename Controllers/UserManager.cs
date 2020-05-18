@@ -1,6 +1,4 @@
-﻿using System.Data.Entity.Validation;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Linq;
 using thewayshop.Models;
 using thewayshop.ViewModel;
 
@@ -13,15 +11,13 @@ namespace thewayshop.Controllers
         public bool SignUp(SignupUser user)
         {
             if (UserNameExists(user.UserName) || EmailExists(user.Email)) return false;
-
-
             try
             {
                 _ctx.KhachHangs.Add(new KhachHang
                 {
                     UserName = user.UserName,
-                    Email = user.Email,
                     Password = Utility.GetMd5Hash(user.Password),
+                    Email = user.Email,
                     SDT = user.PhoneNumber,
                 });
                 _ctx.SaveChanges();
@@ -30,7 +26,6 @@ namespace thewayshop.Controllers
             {
                 return false;
             }
-
             return true;
         }
 
