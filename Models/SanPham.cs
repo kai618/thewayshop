@@ -36,7 +36,7 @@ namespace thewayshop.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public virtual LoaiSanPham LoaiSanPham { get; set; }
-        public static DateTime threshold = DateTime.Today.AddMonths(-1);
+        public static DateTime threshold = DateTime.Today.AddMonths(-3);
         public ShowcaseType LayLoaiTrungBay()
         {
             if (NgayThemSP > threshold && KhuyenMai == 0) return ShowcaseType.New;

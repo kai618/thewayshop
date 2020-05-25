@@ -301,6 +301,7 @@
     <Content Include="theway\js\jquery.superslides.min.js" />
     <Content Include="theway\js\owl.carousel.min.js" />
     <Content Include="theway\js\popper.min.js" />
+    <Content Include="theway\js\side-cart.js" />
     <Content Include="theway\php\form-process.php" />
     <Content Include="theway\webfonts\fa-brands-400.svg" />
     <Content Include="theway\webfonts\fa-regular-400.svg" />
