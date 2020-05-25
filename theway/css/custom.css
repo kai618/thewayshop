@@ -8,3 +8,17 @@
     display: block;
     margin-top: 0;
 }
+
+.user-selections {
+    color: #212121 !important;
+}
+
+    .user-selections:hover {
+        color: #e53935 !important;
+    }
+
+
+.user-name {
+    color: #e53935;
+    cursor: pointer;
+}

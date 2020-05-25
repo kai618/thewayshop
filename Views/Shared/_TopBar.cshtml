@@ -59,13 +59,13 @@
             {
               <li>
                 <div class="dropdown">
-                  <div class="dropdown-toggle" data-toggle="dropdown">
-                    @Session["user"].ToString().ToUpper()
+                  <div class="dropdown-toggle user-name" data-toggle="dropdown">
+                    <b>@Session["user"].ToString().ToUpper()</b>
                   </div>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item user-selections" href="#">Profile</a>
+                    <a class="dropdown-item user-selections" href="#">Settings</a>
+                    <a class="dropdown-item user-selections" href=@Url.Action("LogOut","User")>Logout</a>
                   </div>
                 </div>
               </li>

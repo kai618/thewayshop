@@ -18,7 +18,7 @@ namespace thewayshop.Models
     public partial class eshopEntities : DbContext
     {
         public eshopEntities()
-            : base("name=eshopEntities")
+            : base("name=eshopEntities1")
         {
         }
     
