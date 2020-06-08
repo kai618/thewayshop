@@ -40,7 +40,7 @@ function processDataUI() {
 }
 
 function refreshProductList() {
-  if (productList.length) {
+  if (productList.length > 0) {
     let rows = '';
     for (let p of productList) {
       rows += `
@@ -65,8 +65,9 @@ function refreshProductList() {
 
     productListEl.innerHTML = rows;
   } else {
-    productListEl.innerHTML = `
-      <p>Empty Cart</p>
+    console.log('empty');
+    productListEl.innerHTML = `      
+      <p class="text-center"><b>Empty Cart</b></p>    
     `;
   }
 }
@@ -79,7 +80,10 @@ function getSum() {
 
 function fetchProductList() {
   const jsonData = localStorage.getItem(productListKey);
-  if (!jsonData) return [];
+  if (!jsonData) {
+    refreshProductList();
+    return;
+  }
 
   productList.push(...JSON.parse(jsonData));
   refreshProductList();
