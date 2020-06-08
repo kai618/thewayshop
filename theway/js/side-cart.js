@@ -14,16 +14,31 @@ function addProduct(id, name, price, amount, imageURL) {
     })
   else productList[index].amount++;
 
-  storeProductList();
-  refreshProductList();
+  processDataUI();
 }
 
 function removeProduct(id) {
   // 
-  setSum();
+
+  processDataUI();
 }
 
-function refreshProductList() {  
+
+function setAmountUI() {
+  let amount = 0;
+  productList.forEach(p => amount += p.amount);
+
+  const amountBadge = document.getElementById('cart-amount-badge');
+  amountBadge.innerHTML = amount;
+}
+
+function processDataUI() {
+  storeProductList();
+  refreshProductList();
+  setAmountUI();
+}
+
+function refreshProductList() {
   if (productList.length) {
     let rows = '';
     for (let p of productList) {

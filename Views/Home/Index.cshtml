@@ -7,11 +7,9 @@
 <!-- Start Slider -->
 @Html.Partial("_Slider")
 <!-- End Slider -->
-
 <!-- Start Categories  -->
 @Html.Action("HomePage", "Category")
 <!-- End Categories -->
-
 <!-- Start Products  -->
 <div class="products-box">
   <div class="container">
@@ -66,7 +64,7 @@
                       </a>
                     </li>
                   </ul>
-                  <a class="cart" href="#">Add to Cart</a>
+                  <a class="cart" href="javascript:void(0)" onclick="addProduct( '@products[i].MaSP', '@Utility.StringCapitalise(products[i].TenSP)', @products[i].GiaThuc, 1, '@products[i].HinhAnh01')">Add to Cart</a>
                 </div>
               </div>
               <div class="why-text">
@@ -103,7 +101,7 @@
                       </a>
                     </li>
                   </ul>
-                  <a class="cart" href="#">Add to Cart</a>
+                  <a class="cart" href="javascript:void(0)" onclick="addProduct( '@products[i].MaSP', '@products[i].TenSP', @products[i].GiaThuc, 1, '@products[i].HinhAnh01')">Add to Cart</a>
                 </div>
               </div>
               <div class="why-text">
@@ -114,7 +112,7 @@
           </div>
         }
 
-        //add line breaks to horizontally align items in each row 
+        //add line breaks to horizontally align items in each row
         if (i % 4 == 3)
         {
           <div class="d-none d-lg-block col-12 special-grid"></div>
@@ -129,7 +127,6 @@
   </div>
 </div>
 <!-- End Products  -->
-
 <!-- Start Blog  -->
 @Html.Partial("_Blog");
 <!-- End Blog  -->
