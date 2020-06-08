@@ -2,7 +2,7 @@
 const productListEl = document.getElementById('product-list');
 const productList = [];
 
-function addProduct(id, name, price, amount, imageURL) {
+function addProduct(id, name, price, amount, imageURL, productURL) {
   const index = productList.findIndex(p => p.id === id);
   if (index === -1)
     productList.push({
@@ -10,7 +10,8 @@ function addProduct(id, name, price, amount, imageURL) {
       name: name,
       price: price,
       amount: amount,
-      imageURL: imageURL
+      imageURL: imageURL,
+      productURL: productURL,
     })
   else productList[index].amount++;
 
@@ -43,14 +44,14 @@ function refreshProductList() {
     let rows = '';
     for (let p of productList) {
       rows += `
-        <li>
-          <a href="#" class="photo">
-            <img src="${p.imageURL}" class="cart-thumb" alt="" />
-          </a>
-          <h6>
-            <a href="#">${p.name}</a>
-          </h6>
-          <p>${p.amount}x - <span class="price">$${p.price}</span></p>
+        <li class="d-flex">
+          <div class="d-flex align-items-center">
+            <img src="${p.imageURL}" class="cart-thumb" alt="" width="50px" style="object-fit:contain;"/>
+          </div>
+          <div class="p-1">
+              <a href="${p.productURL}"><b>${p.name}</b></a>           
+            <p>${p.amount}x - <span class="price">$${p.price}</span></p>
+          </div>
         </li>
       `;
     }
@@ -58,7 +59,7 @@ function refreshProductList() {
     rows += `
       <li class="total">
         <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-        <span class="float-right"><strong>Total</strong>: $${getSum()}</span>
+        <span class="float-right"><strong>Total</strong>: $${getSum().toFixed(2)}</span>
       </li>
     `;
 
