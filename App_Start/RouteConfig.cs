@@ -20,6 +20,12 @@ namespace thewayshop
             );
 
             routes.MapRoute(
+               name: "Cart",
+               url: "Cart/{action}",
+               defaults: new { controller = "Cart", action = "Index" }
+           );
+
+            routes.MapRoute(
                 name: "Product Search",
                 url: "Product/Search/{keyword}",
                 defaults: new {controller = "Product", action = "Search"}

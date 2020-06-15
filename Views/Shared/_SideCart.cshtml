@@ -17,5 +17,8 @@
 
   $(document).ready(function () {
     setAmountUI();
+
+    @{ var cartURL = Url.Action("Index", "Cart");}
+    setCartURL('@cartURL');
   });
 </script>

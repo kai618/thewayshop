@@ -2,6 +2,8 @@
 const productListEl = document.getElementById('product-list');
 const productList = [];
 
+let cartURL = '#';
+
 function addProduct(id, name, price, amount, imageURL, productURL) {
   const index = productList.findIndex(p => p.id === id);
   if (index === -1)
@@ -19,8 +21,8 @@ function addProduct(id, name, price, amount, imageURL, productURL) {
 }
 
 function removeProduct(id) {
-  // 
-
+  const index = productList.findIndex(p => p.id === id);
+  if (index !== -1) productList.splice(index, 1);
   processDataUI();
 }
 
@@ -37,6 +39,11 @@ function processDataUI() {
   storeProductList();
   refreshProductList();
   setAmountUI();
+}
+
+function setCartURL(url) {
+  cartURL = url;
+  refreshProductList();
 }
 
 function refreshProductList() {
@@ -58,7 +65,7 @@ function refreshProductList() {
 
     rows += `
       <li class="total">
-        <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+        <a href="${cartURL}" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
         <span class="float-right"><strong>Total</strong>: $${getSum().toFixed(2)}</span>
       </li>
     `;
