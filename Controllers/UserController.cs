@@ -31,6 +31,7 @@ namespace thewayshop.Controllers
         public ActionResult SignIn()
         {
             if (Session["user"] != null) return RedirectToAction("Index", "Home");
+            TempData["previousUrl"] = System.Web.HttpContext.Current.Request.UrlReferrer.AbsoluteUri;
             return View();
         }
 
@@ -41,6 +42,7 @@ namespace thewayshop.Controllers
             if (_userMgr.SignIn(user))
             {
                 Session["user"] = user.UserName;
+                if (TempData.ContainsKey("previousUrl")) return Redirect(TempData["previousUrl"].ToString());
                 return RedirectToAction("Index", "Home");
             }
             ModelState.AddModelError("unavailable", "The user name or email address has already existed!");
