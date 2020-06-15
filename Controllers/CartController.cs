@@ -10,5 +10,11 @@ namespace thewayshop.Controllers
         {
             return View();
         }
+
+        public ActionResult Checkout()
+        {
+            if (Session["user"] == null) return RedirectToAction("SignIn", "User");
+            return View();
+        }
     }
 }

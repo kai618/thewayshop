@@ -10,7 +10,7 @@ namespace thewayshop.Controllers
         [HttpGet]
         public ActionResult SignUp()
         {
-            if (Session["user"] != null) RedirectToAction("Index", "Home");
+            if (Session["user"] != null) return RedirectToAction("Index", "Home");
             return View();
         }
 
@@ -30,7 +30,7 @@ namespace thewayshop.Controllers
         [HttpGet]
         public ActionResult SignIn()
         {
-            if (Session["user"] != null) RedirectToAction("Index", "Home");
+            if (Session["user"] != null) return RedirectToAction("Index", "Home");
             return View();
         }
 
@@ -50,7 +50,7 @@ namespace thewayshop.Controllers
 
         public ActionResult LogOut()
         {
-            Session.Clear();
+            Session["user"] = null;
             return RedirectToAction("Index", "Home");
         }
 
