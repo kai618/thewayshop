@@ -19,7 +19,87 @@
   </div>
 </div>
 <!-- End All Title Box -->
-
 <!-- Cart Start -->
-<h5>Index</h5>
+<br />
+<section id="cart_items">
+  <div id="cart_items_container" class="container">
+  </div>
+</section>
 <!-- Cart End -->
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    console.log(productList.length);
+    if (productList.length == 0) {
+      $("#cart_items_container").append(`
+        <div class="alert alert-warning" role="alert" style="text-align:center;font-size: 16px">We're sorry. Your cart is empty!</div>
+      `);
+    }
+    else {
+      // begin
+      rows = `
+        <div class="cart_info">
+          <table class="table ">
+            <thead>
+              <tr class="cart_menu">
+                <td class="image" width="10%"></td>
+                <td class="description">Item</td>
+                <td class="price text-center">Price</td>
+                <td class="quantity text-center">Quantity</td>
+                <td class="total text-center">Total</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+      `;
+
+
+      productList.forEach(p => {
+        rows += `
+          <tr id="row-${p.id}">
+          <td class="cart_product">
+            <img src="${p.imageURL}" alt="">
+          </td>
+
+          <td class="cart_description">
+            <h4><a href="${p.productURL}">${p.name}</a></h4>
+          </td>
+
+          <td class="cart_price text-center">
+            <p>$${p.price.toFixed(2)}</p>
+          </td>
+
+          <td class="cart_quantity ">
+            <div class="d-flex justify-content-center">
+              <div class="cart_quantity_button d-flex align-items-center">
+                <a class="cart_quantity_up" href="javascript:;"> + </a>
+                <input class="cart_quantity_input" type="text" value="${p.amount}" autocomplete="on" size="2">
+                <a class="cart_quantity_down" href="javascript:;"> - </a>
+              </div>
+            </div>
+          </td>
+
+          <td class="cart_total text-center">
+            <p class="cart_total_price ">$${(p.price * p.amount).toFixed(2)}</p>
+          </td>
+
+          <td class="cart_delete text-center">
+            <a class="cart_quantity_delete" href="javascript:;"><i class="fa fa-times"></i></a>
+          </td>
+        </tr>
+       `;
+      });
+
+      // end
+      rows += `
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      $("#cart_items_container").append(rows);
+    }
+
+  });
+</script>
+

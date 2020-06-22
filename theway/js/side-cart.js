@@ -4,6 +4,11 @@ const productList = [];
 
 let cartURL = '#';
 
+$(document).ready(function () {
+  fetchProductList();
+  setAmountUI();
+});
+
 function addProduct(id, name, price, amount, imageURL, productURL) {
   const index = productList.findIndex(p => p.id === id);
   if (index === -1)
@@ -72,7 +77,6 @@ function refreshProductList() {
 
     productListEl.innerHTML = rows;
   } else {
-    console.log('empty');
     productListEl.innerHTML = `      
       <p class="text-center"><b>Empty Cart</b></p>    
     `;
