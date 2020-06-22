@@ -10,8 +10,8 @@ $(document).ready(function () {
 });
 
 function addProduct(id, name, price, amount, imageURL, productURL) {
-  const index = productList.findIndex(p => p.id === id);
-  if (index === -1)
+  const index = productList.findIndex(p => p.id == id);
+  if (index == -1)
     productList.push({
       id: id,
       name: name,
@@ -26,8 +26,23 @@ function addProduct(id, name, price, amount, imageURL, productURL) {
 }
 
 function removeProduct(id) {
-  const index = productList.findIndex(p => p.id === id);
+  const index = productList.findIndex(p => p.id == id);
   if (index !== -1) productList.splice(index, 1);
+  processDataUI();
+}
+
+function increaseProduct(id) {
+  const index = productList.findIndex(p => p.id == id);
+  productList[index].amount++;
+
+  processDataUI();
+}
+
+function decreaseProduct(id) {
+  const index = productList.findIndex(p => p.id == id);
+  if (productList[index].amount == 1) removeProduct(id);
+  else productList[index].amount--;
+
   processDataUI();
 }
 
@@ -62,7 +77,7 @@ function refreshProductList() {
           </div>
           <div class="p-1">
               <a href="${p.productURL}"><b>${p.name}</b></a>           
-            <p>${p.amount}x - <span class="price">$${p.price}</span></p>
+            <p>${p.amount}x - <span class="price">$${p.price.toFixed(2)}</span></p>
           </div>
         </li>
       `;
@@ -101,6 +116,6 @@ function fetchProductList() {
 }
 
 function storeProductList() {
-  if (productList.length === 0) return;
+  if (productList.length == 0) return;
   localStorage.setItem(productListKey, JSON.stringify(productList));
 }
