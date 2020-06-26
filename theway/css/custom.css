@@ -119,6 +119,7 @@
     font-size: 16px;
     text-align: center;
     font-family: 'Roboto',sans-serif;
+    width: 50px;
 }
 
 
@@ -156,4 +157,17 @@
 .table.table-condensed.total-result
 .shipping-cost {
     border-bottom: 1px solid #F7F7F0;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }

@@ -32,11 +32,7 @@
 
 <script type="text/javascript">
   $(document).ready(function () {
-    if (productList.length == 0) {
-      $("#cart_items_container").append(`
-        <div class="alert alert-warning" role="alert" style="text-align:center;font-size: 16px">We're sorry. Your cart is empty!</div>
-      `);
-    }
+    if (productList.length == 0) appendEmptyCartAlert();
     else {
       // begin
       rows = `
@@ -74,15 +70,15 @@
           <td class="cart_quantity ">
             <div class="d-flex justify-content-center">
               <div class="cart_quantity_button d-flex align-items-center">
-                <a class="cart_quantity_up" href="javascript:;" onclick="increment(${p.id})"> + </a>
-                <input id="amount-input-${p.id}" class="cart_quantity_input" type="text" value="${p.amount}" autocomplete="on" size="2">
-                <a class="cart_quantity_down" href="javascript:;" onclick="decrement(${p.id})"> - </a>
+                <a class="cart_quantity_up" href="javascript:;" onclick="increment(${p.id}, ${p.price})"> + </a>
+                <input id="amount-input-${p.id}" class="cart_quantity_input" type="number" min="1" value="${p.amount}" disabled="true">
+                <a class="cart_quantity_down" href="javascript:;" onclick="decrement(${p.id}, ${p.price})"> - </a>
               </div>
             </div>
           </td>
 
           <td class="cart_total text-center">
-            <p class="cart_total_price ">$${(p.price * p.amount).toFixed(2)}</p>
+            <p id="cart_total_price-${p.id}"  class="cart_total_price">$${(p.price * p.amount).toFixed(2)}</p>
           </td>
 
           <td class="cart_delete text-center">
@@ -103,23 +99,34 @@
     }
   });
 
-  function increment(id) {
+  function increment(id, price) {
     const amount = getAmount(id);
     setAmount(id, amount + 1);
+    setTotalCost(id, amount + 1, price);
     increaseProduct(id);
   }
 
-  function decrement(id) {
+  function decrement(id, price) {
     const amount = getAmount(id);
     if (amount == 1) return;
     setAmount(id, amount - 1);
+    setTotalCost(id, amount - 1, price);
     decreaseProduct(id);
   }
 
   function remove(id) {
-    // confirm
-    // jquery fade out
-    removeProduct(id);
+    const res = confirm('Are you sure?');
+    if (res) {
+      $('#row-' + id).fadeOut();
+      removeProduct(id);
+      if (productList.length == 0) appendEmptyCartAlert();
+    }
+  }
+
+  function setTotalCost(id, amount, price) {
+
+    const ref = document.getElementById(`cart_total_price-${id}`);
+    ref.innerHTML = `$${(amount * price).toFixed(2)}`;
   }
 
   function getAmount(id) {
@@ -130,6 +137,12 @@
   function setAmount(id, val) {
     const ref = document.getElementById(`amount-input-${id}`);
     ref.value = val;
+  }
+
+  function appendEmptyCartAlert() {
+    $("#cart_items_container").html(`
+        <div class="alert alert-warning" role="alert" style="text-align:center;font-size: 16px">We're sorry. Your cart is empty!</div>
+      `);
   }
 
 </script>

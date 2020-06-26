@@ -116,6 +116,6 @@ function fetchProductList() {
 }
 
 function storeProductList() {
-  if (productList.length == 0) return;
+  //if (productList.length == 0) return;
   localStorage.setItem(productListKey, JSON.stringify(productList));
 }
