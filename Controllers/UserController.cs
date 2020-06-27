@@ -31,7 +31,11 @@ namespace thewayshop.Controllers
         public ActionResult SignIn()
         {
             if (Session["user"] != null) return RedirectToAction("Index", "Home");
-            TempData["previousUrl"] = Request.UrlReferrer.LocalPath.ToString();
+            if (Request.UrlReferrer != null)
+            {
+                TempData["previousUrl"] = Request.UrlReferrer.ToString();
+            }
+                
             return View();
         }
 

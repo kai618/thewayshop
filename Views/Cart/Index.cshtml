@@ -51,8 +51,9 @@
             <tbody>
       `;
 
-
+      let total = 0.0;
       productList.forEach(p => {
+        total += p.price * p.amount;
         rows += `
           <tr id="row-${p.id}">
           <td class="cart_product">
@@ -92,6 +93,11 @@
       rows += `
             </tbody>
           </table>
+          <div class="d-flex flex-column align-items-end">
+            <h1>Total: <span id="all-cost" class="badge badge-light">$${getSum().toFixed(2)}</span></h1>
+            <br >
+            <a href="@Url.Action("Checkout", "Cart")" class="btn btn-danger">Checkout</a>
+          </div>
         </div>
       `;
 
@@ -104,6 +110,7 @@
     setAmount(id, amount + 1);
     setTotalCost(id, amount + 1, price);
     increaseProduct(id);
+    setAllCost();
   }
 
   function decrement(id, price) {
@@ -112,6 +119,7 @@
     setAmount(id, amount - 1);
     setTotalCost(id, amount - 1, price);
     decreaseProduct(id);
+    setAllCost();
   }
 
   function remove(id) {
@@ -119,14 +127,17 @@
     if (res) {
       $('#row-' + id).fadeOut();
       removeProduct(id);
+      setAllCost();
       if (productList.length == 0) appendEmptyCartAlert();
     }
   }
 
-  function setTotalCost(id, amount, price) {
+  function setTotalCost(id, amount, price) {    
+    $("#cart_total_price-" + id).text(`$${(amount * price).toFixed(2)}`);
+  }
 
-    const ref = document.getElementById(`cart_total_price-${id}`);
-    ref.innerHTML = `$${(amount * price).toFixed(2)}`;
+  function setAllCost() {
+    $("#all-cost").text(`$${getSum().toFixed(2)}`);
   }
 
   function getAmount(id) {
