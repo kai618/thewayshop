@@ -103,7 +103,9 @@
   });
 
   $(document).ready(function () {
-    if (productList.length == 0) appendEmptyCartAlert();
+    if (productList.length == 0) {
+      window.location.href = '@Url.Action("Index", "Cart")';
+    }
     else {
       // begin
       rows = `
